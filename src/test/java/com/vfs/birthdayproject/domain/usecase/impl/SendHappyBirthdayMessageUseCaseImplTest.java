@@ -38,11 +38,11 @@ public class SendHappyBirthdayMessageUseCaseImplTest {
         final Friend friend = friendBuilder.setBirthday(birthday).build();
 
         final OffsetDateTime friendBirthday = OffsetDateTime.now().withMonth(12);
-        final FriendBuilderFixture birthFriendBuilder = new FriendBuilderFixture();
-        final Friend birthFriend = birthFriendBuilder.setBirthday(friendBirthday).build();
+        final FriendBuilderFixture birthPersonBuilder = new FriendBuilderFixture();
+        final Friend birthPerson = birthPersonBuilder.setBirthday(friendBirthday).build();
 
         OffsetDateTime dateTime = OffsetDateTime.now().withMonth(1).withDayOfMonth(1);
-        when(friendPort.getAllFriends()).thenReturn(List.of(friend, birthFriend));
+        when(friendPort.getAllFriends()).thenReturn(List.of(friend, birthPerson));
         // when
         assertDoesNotThrow(() -> service.execute(dateTime));
         // then

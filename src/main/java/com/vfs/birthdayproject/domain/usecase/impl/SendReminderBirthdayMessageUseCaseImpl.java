@@ -22,14 +22,14 @@ public class SendReminderBirthdayMessageUseCaseImpl implements SendReminderBirth
     public void execute(OffsetDateTime datetime) {
         final Collection<Friend> friends = friendPort.getAllFriends();
         final Collection<Friend> friendsMakeBirthdayToday = friends.stream().filter(friend -> friend.isMyBirthday(datetime)).toList();
-        friendsMakeBirthdayToday.forEach(birthdayFriend -> sendReminderMessage(birthdayFriend, excludeCurrentFriend(friends, birthdayFriend)));
+        friendsMakeBirthdayToday.forEach(birthdayPerson -> sendReminderMessage(birthdayPerson, excludeBirthdayPerson(friends, birthdayPerson)));
     }
 
-    private void sendReminderMessage(Friend birthdayFriend, Collection<Friend> friends) {
-        friends.forEach(friend -> notificationPort.sendMessage(friend, new ReminderBirthdayMessage(friend, birthdayFriend)));
+    private void sendReminderMessage(Friend birthdayPerson, Collection<Friend> friends) {
+        friends.forEach(friend -> notificationPort.sendMessage(friend, new ReminderBirthdayMessage(friend, birthdayPerson)));
     }
 
-    private Collection<Friend> excludeCurrentFriend(Collection<Friend> friends, Friend birthdayFriend) {
-        return friends.stream().filter(friend -> friend != birthdayFriend).toList();
+    private Collection<Friend> excludeBirthdayPerson(Collection<Friend> friends, Friend birthdayPerson) {
+        return friends.stream().filter(friend -> !friend.equals(birthdayPerson)).toList();
     }
 }

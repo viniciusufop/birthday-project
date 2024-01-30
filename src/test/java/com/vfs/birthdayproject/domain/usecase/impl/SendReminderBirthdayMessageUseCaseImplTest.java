@@ -30,7 +30,7 @@ public class SendReminderBirthdayMessageUseCaseImplTest {
     private SendReminderBirthdayMessageUseCaseImpl service;
 
     @Test
-    public void shouldSendReminderMessageForAllFriendsExceptTheBirthdayFriend() {
+    public void shouldSendReminderMessageForAllFriendsExceptTheBirthdayPerson() {
         // given
         final OffsetDateTime birthday = OffsetDateTime.now().withMonth(10).withDayOfMonth(5);
         final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
@@ -40,16 +40,16 @@ public class SendReminderBirthdayMessageUseCaseImplTest {
         final Friend secondFriend = secondFriendBuilder.setBirthday(secondBirthday).setFirstName("John").build();
 
         final OffsetDateTime friendBirthday = OffsetDateTime.now().withYear(1995).withMonth(1).withDayOfMonth(1);
-        final FriendBuilderFixture birthFriendBuilder = new FriendBuilderFixture();
-        final Friend birthFriend = birthFriendBuilder.setBirthday(friendBirthday).build();
+        final FriendBuilderFixture birthPersonBuilder = new FriendBuilderFixture();
+        final Friend birthPerson = birthPersonBuilder.setBirthday(friendBirthday).build();
 
         OffsetDateTime dateTime = OffsetDateTime.now().withMonth(1).withDayOfMonth(1);
-        when(friendPort.getAllFriends()).thenReturn(List.of(friend, birthFriend, secondFriend));
+        when(friendPort.getAllFriends()).thenReturn(List.of(friend, birthPerson, secondFriend));
         // when
         assertDoesNotThrow(() -> service.execute(dateTime));
 
         // then
-        verify(notificationPort).sendMessage(eq(friend), eq(new ReminderBirthdayMessage(friend, birthFriend)));
-        verify(notificationPort).sendMessage(eq(secondFriend), eq(new ReminderBirthdayMessage(secondFriend, birthFriend)));
+        verify(notificationPort).sendMessage(eq(friend), eq(new ReminderBirthdayMessage(friend, birthPerson)));
+        verify(notificationPort).sendMessage(eq(secondFriend), eq(new ReminderBirthdayMessage(secondFriend, birthPerson)));
     }
 }

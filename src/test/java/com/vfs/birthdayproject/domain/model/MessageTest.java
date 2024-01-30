@@ -29,10 +29,10 @@ public class MessageTest {
 
         final String friendFirstName = "John";
         final String friendLastName = "Snow";
-        final FriendBuilderFixture birthFriendBuilder = new FriendBuilderFixture();
-        final Friend birthFriend = birthFriendBuilder.setFirstName(friendFirstName).setLastName(friendLastName).build();
+        final FriendBuilderFixture birthPersonBuilder = new FriendBuilderFixture();
+        final Friend birthPerson = birthPersonBuilder.setFirstName(friendFirstName).setLastName(friendLastName).build();
         // when
-        final Message message = new ReminderBirthdayMessage(friend, birthFriend);
+        final Message message = new ReminderBirthdayMessage(friend, birthPerson);
         // then
         assertEquals("Birthday Reminder", message.getSubject());
         assertEquals("Dear Vinicius\nToday is John Snow's birthday.\n\t\tDon't forget to send him a message !", message.getBody());
