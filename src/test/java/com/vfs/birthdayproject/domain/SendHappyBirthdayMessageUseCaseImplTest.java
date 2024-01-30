@@ -3,6 +3,7 @@ package com.vfs.birthdayproject.domain;
 import com.vfs.birthdayproject.domain.model.Friend;
 import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
+import com.vfs.birthdayproject.fixture.FriendBuilderFixture;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,17 +31,13 @@ public class SendHappyBirthdayMessageUseCaseImplTest {
     @Test
     public void shouldSendAHappyBirthdayMessageWhenItIsAFriendBirthday() {
         // given
-        final String firstName = "Vinicius";
-        final String lastName = "Souza";
-        final String email = "vinicius_ufop@yahoo.com.br";
         final OffsetDateTime birthday = OffsetDateTime.now().withMonth(1).withDayOfMonth(1);
-        final Friend friend = new Friend(firstName, lastName, email, birthday);
+        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
+        final Friend friend = friendBuilder.setBirthday(birthday).build();
 
-        final String friendFirstName = "John";
-        final String friendLastName = "Snow";
-        final String friendEmail = "vinicius_ufop@yahoo.com.br";
         final OffsetDateTime friendBirthday = OffsetDateTime.now().withMonth(12);
-        final Friend birthFriend = new Friend(friendFirstName, friendLastName, friendEmail, friendBirthday);
+        final FriendBuilderFixture birthFriendBuilder = new FriendBuilderFixture();
+        final Friend birthFriend = birthFriendBuilder.setBirthday(friendBirthday).build();
 
         OffsetDateTime dateTime = OffsetDateTime.now().withMonth(1).withDayOfMonth(1);
         when(friendPort.getAllFriends()).thenReturn(List.of(friend, birthFriend));

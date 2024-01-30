@@ -1,5 +1,6 @@
 package com.vfs.birthdayproject.domain.model;
 
+import com.vfs.birthdayproject.fixture.FriendBuilderFixture;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
@@ -11,11 +12,9 @@ public class FriendTest {
     @Test
     public void shouldReturnsTrueWhenIsMyBirthday() {
         // given
-        final String firstName = "Vinicius";
-        final String lastName = "Souza";
-        final String email = "vinicius_ufop@yahoo.com.br";
         final OffsetDateTime birthday = OffsetDateTime.now().withYear(1988).withMonth(6).withDayOfMonth(29);
-        final Friend friend = new Friend(firstName, lastName, email, birthday);
+        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
+        final Friend friend = friendBuilder.setBirthday(birthday).build();
         // when
         final boolean isMyBirthday = friend.isMyBirthday(OffsetDateTime.now().withMonth(6).withDayOfMonth(29));
         // then
@@ -24,36 +23,35 @@ public class FriendTest {
 
     @Test
     public void shouldReturnsFalseWhenIsNotMyBirthday() {
-        final String firstName = "Vinicius";
-        final String lastName = "Souza";
-        final String email = "vinicius_ufop@yahoo.com.br";
+        // given
         final OffsetDateTime birthday = OffsetDateTime.now().withYear(1988).withMonth(6).withDayOfMonth(29);
-        final Friend friend = new Friend(firstName, lastName, email, birthday);
-        assertFalse(friend.isMyBirthday(OffsetDateTime.now().withMonth(6).withDayOfMonth(12)));
+        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
+        final Friend friend = friendBuilder.setBirthday(birthday).build();
+        // when
+        final boolean isMyBirthday = friend.isMyBirthday(OffsetDateTime.now().withMonth(6).withDayOfMonth(12));
+        // then
+        assertFalse(isMyBirthday);
     }
 
     @Test
     public void shouldReturnsTrueWhenIsFev28AndMyBirthdayIsFev29() {
         // given
-        final String firstName = "Vinicius";
-        final String lastName = "Souza";
-        final String email = "vinicius_ufop@yahoo.com.br";
         final OffsetDateTime birthday = OffsetDateTime.now().withYear(2000).withMonth(2).withDayOfMonth(29);
+        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
+        final Friend friend = friendBuilder.setBirthday(birthday).build();
         // when
-        final Friend friend = new Friend(firstName, lastName, email, birthday);
+        final boolean isMyBirthday = friend.isMyBirthday(OffsetDateTime.now().withMonth(2).withDayOfMonth(28));
         // then
-        assertTrue(friend.isMyBirthday(OffsetDateTime.now().withMonth(2).withDayOfMonth(28)));
+        assertTrue(isMyBirthday);
     }
 
     @Test
     public void shouldReturnsHappyBirthdayMessage() {
         // given
         final String firstName = "Vinicius";
-        final String lastName = "Souza";
-        final String email = "vinicius_ufop@yahoo.com.br";
-        final OffsetDateTime birthday = OffsetDateTime.now().withYear(2000).withMonth(2).withDayOfMonth(29);
+        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
+        final Friend friend = friendBuilder.setFirstName(firstName).build();
         // when
-        final Friend friend = new Friend(firstName, lastName, email, birthday);
         final Message message = friend.buildHappyBirthdayMessage();
         // then
         assertEquals("Happy birthday!", message.subject());
@@ -64,16 +62,13 @@ public class FriendTest {
     public void shouldReturnsReminderBirthdayMessage() {
         // given
         final String firstName = "Vinicius";
-        final String lastName = "Souza";
-        final String email = "vinicius_ufop@yahoo.com.br";
-        final OffsetDateTime birthday = OffsetDateTime.now();
-        final Friend friend = new Friend(firstName, lastName, email, birthday);
+        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
+        final Friend friend = friendBuilder.setFirstName(firstName).build();
 
         final String friendFirstName = "John";
         final String friendLastName = "Snow";
-        final String friendEmail = "vinicius_ufop@yahoo.com.br";
-        final OffsetDateTime friendBirthday = OffsetDateTime.now();
-        final Friend birthFriend = new Friend(friendFirstName, friendLastName, friendEmail, friendBirthday);
+        final FriendBuilderFixture birthFriendBuilder = new FriendBuilderFixture();
+        final Friend birthFriend = birthFriendBuilder.setFirstName(friendFirstName).setLastName(friendLastName).build();
         // when
         final Message message = friend.buildReminderBirthdayMessage(birthFriend);
         // then
