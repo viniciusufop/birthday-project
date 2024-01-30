@@ -18,7 +18,9 @@ repositories {
 extra["springShellVersion"] = "3.2.0"
 
 dependencies {
-// 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.xerial:sqlite-jdbc:3.45.0.0")
+    implementation("org.hibernate.orm:hibernate-community-dialects:6.4.2.Final")
     implementation("org.springframework.shell:spring-shell-starter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mockito:mockito-core:5.10.0")

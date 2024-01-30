@@ -36,6 +36,14 @@ public class Friend {
         return lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public OffsetDateTime getBirthday() {
+        return birthday;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
