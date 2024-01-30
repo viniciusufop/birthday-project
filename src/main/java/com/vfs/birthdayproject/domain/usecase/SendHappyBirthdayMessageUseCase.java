@@ -1,4 +1,4 @@
-package com.vfs.birthdayproject.domain;
+package com.vfs.birthdayproject.domain.usecase;
 
 import java.time.OffsetDateTime;
 

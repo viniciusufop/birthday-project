@@ -1,8 +1,9 @@
-package com.vfs.birthdayproject.domain;
+package com.vfs.birthdayproject.domain.usecase.impl;
 
 import com.vfs.birthdayproject.domain.model.Friend;
 import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
+import com.vfs.birthdayproject.domain.usecase.impl.SendHappyBirthdayMessageUseCaseImpl;
 import com.vfs.birthdayproject.fixture.FriendBuilderFixture;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
