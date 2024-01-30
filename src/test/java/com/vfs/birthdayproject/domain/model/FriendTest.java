@@ -44,37 +44,6 @@ public class FriendTest {
         // then
         assertTrue(isMyBirthday);
     }
-
-    @Test
-    public void shouldReturnsHappyBirthdayMessage() {
-        // given
-        final String firstName = "Vinicius";
-        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
-        final Friend friend = friendBuilder.setFirstName(firstName).build();
-        // when
-        final Message message = friend.buildHappyBirthdayMessage();
-        // then
-        assertEquals("Happy birthday!", message.subject());
-        assertEquals("Happy birthday, dear " + firstName + "!", message.body());
-    }
-
-    @Test
-    public void shouldReturnsReminderBirthdayMessage() {
-        // given
-        final String firstName = "Vinicius";
-        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
-        final Friend friend = friendBuilder.setFirstName(firstName).build();
-
-        final String friendFirstName = "John";
-        final String friendLastName = "Snow";
-        final FriendBuilderFixture birthFriendBuilder = new FriendBuilderFixture();
-        final Friend birthFriend = birthFriendBuilder.setFirstName(friendFirstName).setLastName(friendLastName).build();
-        // when
-        final Message message = friend.buildReminderBirthdayMessage(birthFriend);
-        // then
-        assertEquals("Birthday Reminder", message.subject());
-        assertEquals("Dear Vinicius\nToday is John Snow's birthday.\n\t\tDon't forget to send him a message !", message.body());
-    }
 }
 
 

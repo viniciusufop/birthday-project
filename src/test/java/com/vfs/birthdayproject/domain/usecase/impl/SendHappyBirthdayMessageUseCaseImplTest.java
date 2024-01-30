@@ -1,9 +1,9 @@
 package com.vfs.birthdayproject.domain.usecase.impl;
 
 import com.vfs.birthdayproject.domain.model.Friend;
+import com.vfs.birthdayproject.domain.model.HappyBirthdayMessage;
 import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
-import com.vfs.birthdayproject.domain.usecase.impl.SendHappyBirthdayMessageUseCaseImpl;
 import com.vfs.birthdayproject.fixture.FriendBuilderFixture;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +15,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -45,6 +46,6 @@ public class SendHappyBirthdayMessageUseCaseImplTest {
         // when
         assertDoesNotThrow(() -> service.execute(dateTime));
         // then
-        verify(notificationPort).sendMessage(friend, friend.buildHappyBirthdayMessage());
+        verify(notificationPort).sendMessage(eq(friend), eq(new HappyBirthdayMessage(friend)));
     }
 }

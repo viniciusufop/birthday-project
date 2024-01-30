@@ -1,6 +1,7 @@
 package com.vfs.birthdayproject.domain.usecase.impl;
 
 import com.vfs.birthdayproject.domain.model.Friend;
+import com.vfs.birthdayproject.domain.model.ReminderBirthdayMessage;
 import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
 import com.vfs.birthdayproject.domain.usecase.SendReminderBirthdayMessageUseCase;
@@ -25,7 +26,7 @@ public class SendReminderBirthdayMessageUseCaseImpl implements SendReminderBirth
     }
 
     private void sendReminderMessage(Friend birthdayFriend, Collection<Friend> friends) {
-        friends.forEach(friend -> notificationPort.sendMessage(friend, friend.buildReminderBirthdayMessage(birthdayFriend)));
+        friends.forEach(friend -> notificationPort.sendMessage(friend, new ReminderBirthdayMessage(friend, birthdayFriend)));
     }
 
     private Collection<Friend> excludeCurrentFriend(Collection<Friend> friends, Friend birthdayFriend) {

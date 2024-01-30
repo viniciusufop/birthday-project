@@ -1,6 +1,7 @@
 package com.vfs.birthdayproject.domain.usecase.impl;
 
 import com.vfs.birthdayproject.domain.model.Friend;
+import com.vfs.birthdayproject.domain.model.HappyBirthdayMessage;
 import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
 import com.vfs.birthdayproject.domain.usecase.SendHappyBirthdayMessageUseCase;
@@ -22,6 +23,6 @@ public class SendHappyBirthdayMessageUseCaseImpl implements SendHappyBirthdayMes
         final Collection<Friend> friends = friendPort.getAllFriends();
         friends.stream()
                 .filter(friend -> friend.isMyBirthday(dateTime))
-                .forEach(friend -> notificationPort.sendMessage(friend, friend.buildHappyBirthdayMessage()));
+                .forEach(friend -> notificationPort.sendMessage(friend, new HappyBirthdayMessage(friend)));
     }
 }

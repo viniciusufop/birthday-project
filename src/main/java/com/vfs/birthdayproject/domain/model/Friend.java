@@ -2,6 +2,7 @@ package com.vfs.birthdayproject.domain.model;
 
 import java.time.Month;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 import static java.lang.String.format;
 
@@ -27,12 +28,24 @@ public class Friend {
                 birthday.getDayOfMonth() == 29 && currentDate.getDayOfMonth() == 28;
     }
 
-    public Message buildHappyBirthdayMessage() {
-        return new Message("Happy birthday!", format("Happy birthday, dear %s!", firstName));
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Message buildReminderBirthdayMessage(Friend birthFriend) {
-        return new Message("Birthday Reminder",
-                format("Dear %s\nToday is %s %s's birthday.\n\t\tDon't forget to send him a message !", firstName, birthFriend.firstName, birthFriend.lastName));
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Friend friend = (Friend) o;
+        return Objects.equals(firstName, friend.firstName) && Objects.equals(lastName, friend.lastName) && Objects.equals(email, friend.email) && Objects.equals(birthday, friend.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email, birthday);
     }
 }
