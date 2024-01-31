@@ -1,9 +1,6 @@
 package com.vfs.birthdayproject.adapter.in;
 
-import com.vfs.birthdayproject.adapter.in.util.LocalDateMapper;
-import com.vfs.birthdayproject.adapter.out.EmailNotificationAdapter;
-import com.vfs.birthdayproject.adapter.out.FriendSqliteAdapter;
-import com.vfs.birthdayproject.infrastructure.configuration.DomainBeanConfiguration;
+import com.vfs.birthdayproject.BeanTestConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
@@ -20,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import static org.awaitility.Awaitility.await;
 
 @ShellTest
-@Import({DomainBeanConfiguration.class, FriendSqliteAdapter.class, EmailNotificationAdapter.class, LocalDateMapper.class})
+@Import(BeanTestConfiguration.class)
 @AutoConfigureDataJpa
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class SendReminderBirthdayMessageCommandTest {

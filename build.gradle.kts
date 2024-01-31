@@ -28,6 +28,7 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:5.10.0")
     testImplementation("org.springframework.shell:spring-shell-test")
     testImplementation("org.springframework.shell:spring-shell-test-autoconfigure")
+    testImplementation("com.tngtech.archunit:archunit-junit5:1.2.1")
 }
 
 dependencyManagement {
