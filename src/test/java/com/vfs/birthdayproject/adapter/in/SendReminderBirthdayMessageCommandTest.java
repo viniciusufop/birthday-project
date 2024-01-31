@@ -35,7 +35,7 @@ public class SendReminderBirthdayMessageCommandTest {
                     .containsText("shell");
         });
 
-        session.write(session.writeSequence().text("send-remind-birthday-message --inputDate 2012-12-12")
+        session.write(session.writeSequence().text("send-reminder-birthday-message --inputDate 2012-12-12")
                 .carriageReturn().build());
         await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
             ShellAssertions.assertThat(session.screen())
@@ -54,7 +54,7 @@ public class SendReminderBirthdayMessageCommandTest {
                     .containsText("shell");
         });
 
-        session.write(session.writeSequence().text("send-remind-birthday-message --inputDate invalid")
+        session.write(session.writeSequence().text("send-reminder-birthday-message --inputDate invalid")
                 .carriageReturn().build());
         await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
             ShellAssertions.assertThat(session.screen())

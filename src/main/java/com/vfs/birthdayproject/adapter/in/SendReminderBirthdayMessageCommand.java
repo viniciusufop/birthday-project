@@ -14,17 +14,17 @@ import static com.vfs.birthdayproject.adapter.in.util.InConstants.INPUT_DATE_DEF
 import static com.vfs.birthdayproject.adapter.in.util.InConstants.INPUT_DATE_HELP;
 
 @ShellComponent
-public class SendRemindBirthdayMessageCommand {
+public class SendReminderBirthdayMessageCommand {
 
     private final SendReminderBirthdayMessageUseCase useCase;
     private final LocalDateMapper mapper;
 
-    public SendRemindBirthdayMessageCommand(SendReminderBirthdayMessageUseCase useCase, LocalDateMapper mapper) {
+    public SendReminderBirthdayMessageCommand(SendReminderBirthdayMessageUseCase useCase, LocalDateMapper mapper) {
         this.useCase = useCase;
         this.mapper = mapper;
     }
 
-    @ShellMethod(key = "send-remind-birthday-message")
+    @ShellMethod(key = "send-reminder-birthday-message")
     public String execute(@ShellOption(defaultValue = INPUT_DATE_DEFAULT, help = INPUT_DATE_HELP) String inputDate){
         try {
             final LocalDate date = mapper.getLocalDateBasedInInputDate(inputDate);
