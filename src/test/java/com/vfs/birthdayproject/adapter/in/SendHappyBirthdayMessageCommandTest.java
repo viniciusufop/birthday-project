@@ -44,4 +44,23 @@ public class SendHappyBirthdayMessageCommandTest {
                     .containsText("Process date 2012-12-12");
         });
     }
+
+    @Test
+    void shouldReturnsMessageToInvalidParameterValue() {
+        InteractiveShellSession session = client
+                .interactive()
+                .run();
+
+        await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
+            ShellAssertions.assertThat(session.screen())
+                    .containsText("shell");
+        });
+
+        session.write(session.writeSequence().text("send-happy-birthday-message --inputDate invalid")
+                .carriageReturn().build());
+        await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
+            ShellAssertions.assertThat(session.screen())
+                    .containsText("Invalid inputDate parameter [invalid]. The standard is YYYY-MM-DD.");
+        });
+    }
 }
