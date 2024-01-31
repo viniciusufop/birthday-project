@@ -1,6 +1,7 @@
 # BIRTHDAY SYSTEM CHALLENGE
 
 This system is part of the Jobsity tech interview process
+Developed by: Vinicius Faria de Souza
 
 ## System Dependencies
 
