@@ -21,8 +21,8 @@ public class FriendTextFileAdapterTest {
         //when
         Collection<Friend> friends = adapter.getAllFriends();
         // given
-        assertTrue(friends.stream().anyMatch(friend -> friend.getFirstName().equals("Name 1")));
-        assertTrue(friends.stream().anyMatch(friend -> friend.getFirstName().equals("Name 2")));
-        assertTrue(friends.stream().anyMatch(friend -> friend.getFirstName().equals("Name 3")));
+        assertTrue(friends.stream().anyMatch(friend -> friend.firstName().equals("Name 1")));
+        assertTrue(friends.stream().anyMatch(friend -> friend.firstName().equals("Name 2")));
+        assertTrue(friends.stream().anyMatch(friend -> friend.firstName().equals("Name 3")));
     }
 }

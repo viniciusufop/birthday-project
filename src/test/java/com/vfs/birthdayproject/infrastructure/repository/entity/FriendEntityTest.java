@@ -20,9 +20,9 @@ public class FriendEntityTest {
         // when
         final Friend friend = entity.buildDomain();
         // then
-        assertEquals(firstName, friend.getFirstName());
-        assertEquals(lastName, friend.getLastName());
-        assertEquals(email, friend.getEmail());
-        assertEquals(birthday, friend.getBirthday());
+        assertEquals(firstName, friend.firstName());
+        assertEquals(lastName, friend.lastName());
+        assertEquals(email, friend.email());
+        assertEquals(birthday, friend.birthday());
     }
 }

@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,9 +32,9 @@ public class FriendSqliteAdapterTest {
         //when
         Collection<Friend> friends = adapter.getAllFriends();
         // given
-        assertTrue(friends.stream().anyMatch(friend -> friend.getFirstName().equals("Name 1")));
-        assertTrue(friends.stream().anyMatch(friend -> friend.getFirstName().equals("Name 2")));
-        assertTrue(friends.stream().anyMatch(friend -> friend.getFirstName().equals("Name 3")));
+        assertTrue(friends.stream().anyMatch(friend -> friend.firstName().equals("Name 1")));
+        assertTrue(friends.stream().anyMatch(friend -> friend.firstName().equals("Name 2")));
+        assertTrue(friends.stream().anyMatch(friend -> friend.firstName().equals("Name 3")));
     }
 
     private FriendEntity buildEntity(String id) {

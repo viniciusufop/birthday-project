@@ -19,7 +19,7 @@ public class EmailNotificationAdapter implements NotificationPort {
                                 
                 <-- End of the Message -->
                 %n""",
-                friend.getEmail(),
+                friend.email(),
                 message.getSubject(),
                 message.getBody()
         );
