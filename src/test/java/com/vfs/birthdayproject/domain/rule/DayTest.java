@@ -30,12 +30,22 @@ public class DayTest {
     }
 
     @Test
-    public void shouldReturnsTrueWhenIsFev28AndMyBirthdayIsFev29() {
+    public void shouldReturnsTrueWhenIsFev28AndMyBirthdayIsFev29InANotLeapYear() {
         // given
         final LocalDate birthday = LocalDate.now().withYear(2000).withMonth(2).withDayOfMonth(29);
         // when
-        final boolean isBirthday = Day.isBirthDay(LocalDate.now().withMonth(2).withDayOfMonth(28), birthday);
+        final boolean isBirthday = Day.isBirthDay(LocalDate.now().withYear(2023).withMonth(2).withDayOfMonth(28), birthday);
         // then
         assertTrue(isBirthday);
+    }
+
+    @Test
+    public void shouldReturnsFalseWhenIsFev28AndMyBirthdayIsFev29InALeapYear() {
+        // given
+        final LocalDate birthday = LocalDate.now().withYear(2000).withMonth(2).withDayOfMonth(29);
+        // when
+        final boolean isBirthday = Day.isBirthDay(LocalDate.now().withYear(2024).withMonth(2).withDayOfMonth(28), birthday);
+        // then
+        assertFalse(isBirthday);
     }
 }

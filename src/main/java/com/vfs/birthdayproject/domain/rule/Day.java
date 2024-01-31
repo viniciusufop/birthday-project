@@ -10,6 +10,7 @@ public final class Day {
     public static boolean isBirthDay(final LocalDate date, final LocalDate birthDay){
         if (date.getMonth().equals(birthDay.getMonth()) && date.getDayOfMonth() == birthDay.getDayOfMonth())
             return true;
+        if(Year.isLeapYear(date.getYear())) return false;
         return date.getMonth().equals(birthDay.getMonth()) && date.getMonth().equals(Month.FEBRUARY) &&
                 birthDay.getDayOfMonth() == 29 && date.getDayOfMonth() == 28;
     }
