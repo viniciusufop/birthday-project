@@ -7,11 +7,12 @@ This system is part of the Jobsity tech interview process
 This application was developer using the technologies below
 
 * Java 17.0.4
+* JUnit 5
 * Gradle 8.5
 * Spring Shell
 
 Confirm that you are use a JDK greater or equals the informed version here.
-It'ss
+It isn't necessary to have the gradle installed in your machine.
 
 ## Build the Application
 In your terminal you need to go to the root project path.
@@ -82,9 +83,21 @@ You can see the test execution report when you access the file below.
 
 ### Jacoco
 
-I included the Jacoco dependency to shows the application test coverage.
+I included the [Jacoco library](https://www.eclemma.org/jacoco/index.html) to shows the application test coverage.
 
 You can see the coverage information access the file below.
 ```shell
 ./build/jacocoHtml/index.html
 ```
+
+### Infrastructure Test
+
+I included the [archunit library](https://www.archunit.org/) to test the architectural restrictions that was proposed by Hexagonal Architecture.  
+
+## Considerations
+
+* I include the leap year rule in the system. So, run the rule below when the year is not a leap year.
+  * Friends born on February, 29th should have their Birthday greeted on February, 28th
+* The rule below doesn't make sense, because we don't have a mobile phone register in the database propose.
+  * You send the note by email and sms <-- the problem is the sms here.
+* 
