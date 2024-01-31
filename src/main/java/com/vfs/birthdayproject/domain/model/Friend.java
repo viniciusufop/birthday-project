@@ -1,19 +1,17 @@
 package com.vfs.birthdayproject.domain.model;
 
+import java.time.LocalDate;
 import java.time.Month;
-import java.time.OffsetDateTime;
 import java.util.Objects;
-
-import static java.lang.String.format;
 
 public class Friend {
 
     private final String firstName;
     private final String lastName;
     private final String email;
-    private final OffsetDateTime birthday;
+    private final LocalDate birthday;
 
-    public Friend(String firstName, String lastName, String email, OffsetDateTime birthday) {
+    public Friend(String firstName, String lastName, String email, LocalDate birthday) {
         //TODO validate and return error for invalid friends data
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,7 +19,7 @@ public class Friend {
         this.birthday = birthday;
     }
 
-    public boolean isMyBirthday(OffsetDateTime currentDate) {
+    public boolean isMyBirthday(LocalDate currentDate) {
         if (currentDate.getMonth().equals(birthday.getMonth()) && currentDate.getDayOfMonth() == birthday.getDayOfMonth())
             return true;
         return currentDate.getMonth().equals(birthday.getMonth()) && currentDate.getMonth().equals(Month.FEBRUARY) &&
@@ -40,7 +38,7 @@ public class Friend {
         return email;
     }
 
-    public OffsetDateTime getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 

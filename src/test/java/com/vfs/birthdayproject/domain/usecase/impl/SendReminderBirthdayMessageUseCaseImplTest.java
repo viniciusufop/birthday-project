@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -32,18 +32,18 @@ public class SendReminderBirthdayMessageUseCaseImplTest {
     @Test
     public void shouldSendReminderMessageForAllFriendsExceptTheBirthdayPerson() {
         // given
-        final OffsetDateTime birthday = OffsetDateTime.now().withMonth(10).withDayOfMonth(5);
+        final LocalDate birthday = LocalDate.now().withMonth(10).withDayOfMonth(5);
         final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
         final Friend friend = friendBuilder.setBirthday(birthday).setFirstName("Matt").build();
-        final OffsetDateTime secondBirthday = OffsetDateTime.now().withMonth(12).withDayOfMonth(6);
+        final LocalDate secondBirthday = LocalDate.now().withMonth(12).withDayOfMonth(6);
         final FriendBuilderFixture secondFriendBuilder = new FriendBuilderFixture();
         final Friend secondFriend = secondFriendBuilder.setBirthday(secondBirthday).setFirstName("John").build();
 
-        final OffsetDateTime friendBirthday = OffsetDateTime.now().withYear(1995).withMonth(1).withDayOfMonth(1);
+        final LocalDate friendBirthday = LocalDate.now().withYear(1995).withMonth(1).withDayOfMonth(1);
         final FriendBuilderFixture birthPersonBuilder = new FriendBuilderFixture();
         final Friend birthPerson = birthPersonBuilder.setBirthday(friendBirthday).build();
 
-        OffsetDateTime dateTime = OffsetDateTime.now().withMonth(1).withDayOfMonth(1);
+        LocalDate dateTime = LocalDate.now().withMonth(1).withDayOfMonth(1);
         when(friendPort.getAllFriends()).thenReturn(List.of(friend, birthPerson, secondFriend));
         // when
         assertDoesNotThrow(() -> service.execute(dateTime));

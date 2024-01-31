@@ -3,7 +3,7 @@ package com.vfs.birthdayproject.infrastructure.repository.entity;
 import com.vfs.birthdayproject.domain.model.Friend;
 import org.junit.jupiter.api.Test;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +15,7 @@ public class FriendEntityTest {
         final String firstName = "John";
         final String lastName = "Test";
         final String email = "=john.test@email.com";
-        final OffsetDateTime birthday = OffsetDateTime.now();
+        final LocalDate birthday = LocalDate.now();
         final FriendEntity entity = new FriendEntity(new FriendKey(firstName, lastName), email, birthday);
         // when
         final Friend friend = entity.buildDomain();

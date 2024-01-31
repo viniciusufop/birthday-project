@@ -2,13 +2,14 @@ package com.vfs.birthdayproject.fixture;
 
 import com.vfs.birthdayproject.domain.model.Friend;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 public final class FriendBuilderFixture {
     String firstName = "";
     String lastName = "";
     String email = "";
-    OffsetDateTime birthday = OffsetDateTime.now();
+    LocalDate birthday = LocalDate.now();
 
     public FriendBuilderFixture setFirstName(String firstName){
         this.firstName = firstName;
@@ -25,7 +26,7 @@ public final class FriendBuilderFixture {
         return this;
     }
 
-    public FriendBuilderFixture setBirthday(OffsetDateTime birthday){
+    public FriendBuilderFixture setBirthday(LocalDate birthday){
         this.birthday = birthday;
         return this;
     }

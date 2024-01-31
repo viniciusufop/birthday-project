@@ -4,14 +4,13 @@ import com.vfs.birthdayproject.domain.model.Friend;
 import com.vfs.birthdayproject.infrastructure.repository.FriendRepository;
 import com.vfs.birthdayproject.infrastructure.repository.entity.FriendEntity;
 import com.vfs.birthdayproject.infrastructure.repository.entity.FriendKey;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -40,6 +39,6 @@ public class FriendSqliteAdapterTest {
     }
 
     private FriendEntity buildEntity(String id) {
-        return new FriendEntity(new FriendKey("Name " + id, ""), id + "@mail.com", OffsetDateTime.now());
+        return new FriendEntity(new FriendKey("Name " + id, ""), id + "@mail.com", LocalDate.now());
     }
 }

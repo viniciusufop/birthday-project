@@ -6,6 +6,7 @@ import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
 import com.vfs.birthdayproject.domain.usecase.SendReminderBirthdayMessageUseCase;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 
@@ -19,7 +20,7 @@ public class SendReminderBirthdayMessageUseCaseImpl implements SendReminderBirth
     }
 
     @Override
-    public void execute(OffsetDateTime datetime) {
+    public void execute(LocalDate datetime) {
         final Collection<Friend> friends = friendPort.getAllFriends();
         final Collection<Friend> friendsMakeBirthdayToday = friends.stream().filter(friend -> friend.isMyBirthday(datetime)).toList();
         friendsMakeBirthdayToday.forEach(birthdayPerson -> sendReminderMessage(birthdayPerson, excludeBirthdayPerson(friends, birthdayPerson)));

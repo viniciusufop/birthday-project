@@ -6,6 +6,7 @@ import com.vfs.birthdayproject.domain.port.FriendPort;
 import com.vfs.birthdayproject.domain.port.NotificationPort;
 import com.vfs.birthdayproject.domain.usecase.SendHappyBirthdayMessageUseCase;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 
@@ -19,7 +20,7 @@ public class SendHappyBirthdayMessageUseCaseImpl implements SendHappyBirthdayMes
     }
 
     @Override
-    public void execute(OffsetDateTime dateTime) {
+    public void execute(LocalDate dateTime) {
         final Collection<Friend> friends = friendPort.getAllFriends();
         friends.stream()
                 .filter(friend -> friend.isMyBirthday(dateTime))

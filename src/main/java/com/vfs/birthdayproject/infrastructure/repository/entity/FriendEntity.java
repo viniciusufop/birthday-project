@@ -6,8 +6,10 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
+
+import static java.time.format.DateTimeFormatter.ISO_DATE;
 
 @Entity(name = "FRIENDS")
 public class FriendEntity {
@@ -20,15 +22,15 @@ public class FriendEntity {
     private String email;
 
     @Column(name = "BIRTHDAY")
-    private OffsetDateTime birthday;
+    private String birthday;
 
     public FriendEntity() {
     }
 
-    public FriendEntity(FriendKey key, String email, OffsetDateTime birthday) {
+    public FriendEntity(FriendKey key, String email, LocalDate birthday) {
         this.key = key;
         this.email = email;
-        this.birthday = birthday;
+        this.birthday = birthday.format(ISO_DATE);
     }
 
     public FriendKey getKey() {
@@ -47,12 +49,12 @@ public class FriendEntity {
         this.email = email;
     }
 
-    public OffsetDateTime getBirthday() {
-        return birthday;
+    public LocalDate getBirthday() {
+        return LocalDate.parse(birthday, ISO_DATE);
     }
 
-    public void setBirthday(OffsetDateTime birthday) {
-        this.birthday = birthday;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday.format(ISO_DATE);
     }
 
     @Override
@@ -69,6 +71,6 @@ public class FriendEntity {
     }
 
     public Friend buildDomain() {
-        return new Friend(key.getFirstName(), key.getLastName(), email, birthday);
+        return new Friend(key.getFirstName(), key.getLastName(), email, getBirthday());
     }
 }
