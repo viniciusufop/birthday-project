@@ -32,18 +32,6 @@ public class FriendTest {
         // then
         assertFalse(isMyBirthday);
     }
-
-    @Test
-    public void shouldReturnsTrueWhenIsFev28AndMyBirthdayIsFev29() {
-        // given
-        final LocalDate birthday = LocalDate.now().withYear(2000).withMonth(2).withDayOfMonth(29);
-        final FriendBuilderFixture friendBuilder = new FriendBuilderFixture();
-        final Friend friend = friendBuilder.setBirthday(birthday).build();
-        // when
-        final boolean isMyBirthday = friend.isMyBirthday(LocalDate.now().withMonth(2).withDayOfMonth(28));
-        // then
-        assertTrue(isMyBirthday);
-    }
 }
 
 

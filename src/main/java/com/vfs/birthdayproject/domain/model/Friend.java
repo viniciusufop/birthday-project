@@ -1,5 +1,7 @@
 package com.vfs.birthdayproject.domain.model;
 
+import com.vfs.birthdayproject.domain.rule.Day;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Objects;
@@ -20,10 +22,7 @@ public class Friend {
     }
 
     public boolean isMyBirthday(LocalDate currentDate) {
-        if (currentDate.getMonth().equals(birthday.getMonth()) && currentDate.getDayOfMonth() == birthday.getDayOfMonth())
-            return true;
-        return currentDate.getMonth().equals(birthday.getMonth()) && currentDate.getMonth().equals(Month.FEBRUARY) &&
-                birthday.getDayOfMonth() == 29 && currentDate.getDayOfMonth() == 28;
+        return Day.isBirthDay(currentDate, birthday);
     }
 
     public String getFirstName() {
