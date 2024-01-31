@@ -6,6 +6,7 @@ import com.vfs.birthdayproject.domain.usecase.SendHappyBirthdayMessageUseCase;
 import com.vfs.birthdayproject.domain.usecase.SendReminderBirthdayMessageUseCase;
 import com.vfs.birthdayproject.domain.usecase.impl.SendHappyBirthdayMessageUseCaseImpl;
 import com.vfs.birthdayproject.domain.usecase.impl.SendReminderBirthdayMessageUseCaseImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,16 +16,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DomainBeanConfiguration {
 
+    /**
+     * You can switch between {@link FriendPort} implementation using the qualifier name
+     * Valid options today
+     *  - friendSqliteAdapter
+     *  - friendTextFileAdapter
+     */
     @Bean
     public SendHappyBirthdayMessageUseCase sendHappyBirthdayMessageUseCase(
-            final FriendPort friendPort,
+            @Qualifier("friendSqliteAdapter") final FriendPort friendPort,
             final NotificationPort notificationPort) {
         return new SendHappyBirthdayMessageUseCaseImpl(friendPort, notificationPort);
     }
 
     @Bean
     public SendReminderBirthdayMessageUseCase sendReminderBirthdayMessageUseCase(
-            final FriendPort friendPort,
+            @Qualifier("friendSqliteAdapter") final FriendPort friendPort,
             final NotificationPort notificationPort) {
         return new SendReminderBirthdayMessageUseCaseImpl(friendPort, notificationPort);
     }

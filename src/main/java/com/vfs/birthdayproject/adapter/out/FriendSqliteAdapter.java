@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Component // this is a component outside the domain scope, so we create the bean directly
+@Component("friendSqliteAdapter") // this is a component outside the domain scope, so we create the bean directly
 public class FriendSqliteAdapter implements FriendPort {
 
     private final FriendRepository repository;

@@ -66,6 +66,31 @@ This command execute the flow that generates notification for all friends (witho
 send-reminder-birthday-message --inputDate 2023-10-20
 ```
 
+## Databases
+
+One of the requirements is the possibility to get data from a sqlite and a text plan file.
+For this, I used the strategy to define multiples beans that you can inject in the port. 
+
+You need to access the file DomainBeanConfiguration and switch between both configuration using the @Qualifier annotation.
+The current values today are:
+* friendSqliteAdapter
+* friendTextFileAdapter
+
+### Sqlite database
+The data is saved in the birthday.sqlite file and you can access it using a database tool as DBeaver.
+
+We have an initial_db_script.sql file that show the scripts to create and populate the database.
+
+### Text File
+The data is saved in the birthday_text.db file and each line is a record.
+
+Each attribute in a record is defined by comma in the following order:
+* First Name
+* Last Name
+* Email
+* Birth Day
+
+
 ## Unit Test
 
 The application was built based in the TDD concept.
