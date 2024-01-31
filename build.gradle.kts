@@ -15,7 +15,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springShellVersion"] = "3.2.0"
+extra["springShellVersion"] = "3.2.1"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -25,6 +25,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mockito:mockito-core:5.10.0")
     testImplementation("org.mockito:mockito-junit-jupiter:5.10.0")
+    testImplementation("org.springframework.shell:spring-shell-test")
+    testImplementation("org.springframework.shell:spring-shell-test-autoconfigure")
 }
 
 dependencyManagement {
