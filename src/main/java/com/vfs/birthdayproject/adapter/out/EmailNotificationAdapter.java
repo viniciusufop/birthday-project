@@ -10,7 +10,18 @@ public class EmailNotificationAdapter implements NotificationPort {
     @Override
     public void sendMessage(Friend friend, Message message) {
         // In this case we need to create dependencies that allows us to send an email
-        System.out.println("Message Subject: "+ message.getSubject());
-        System.out.println("Message Body: "+ message.getBody());
+        System.out.printf(
+                """
+                <-- Simulate send a Message -->
+                To: %s
+                Subject: %s
+                Body: %s
+                                
+                <-- End of the Message -->
+                %n""",
+                friend.getEmail(),
+                message.getSubject(),
+                message.getBody()
+        );
     }
 }
